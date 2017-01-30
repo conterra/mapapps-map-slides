@@ -127,8 +127,21 @@
                     <excludes>slides/**</excludes>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.3</version>
+                <configuration>
+                    <preparationGoals>clean</preparationGoals>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <tagNameFormat>@{project.version}</tagNameFormat>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
+    <scm>
+        <developerConnection>scm:git:https://git01.eggits.net/scm/ctprodeng/ct-reveal-js.git</developerConnection>
+    </scm>
     <distributionManagement>
         <repository>
             <id>ct-dist-releases-file</id>
