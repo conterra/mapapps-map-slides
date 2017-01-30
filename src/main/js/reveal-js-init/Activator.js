@@ -4,12 +4,26 @@
  */
 define(["./init-reveal", "require"], function(init, require) {
 
+
+    var removeStartedInterval;
+
     function injectSlides(ctx, slideHtml) {
         if (slideHtml) {
             var ref = ctx.getServiceReferences("ct.framework.api.ApplicationContext")[0];
             var appCtx = ctx.getService(ref);
             var root = appCtx.getApplicationRootNode();
             root.innerHTML = "<div class='reveal'>" + slideHtml + "</div>";
+
+            //TODO: remove if init.js of map.apps does not create problems
+            clearInterval(removeStartedInterval);
+            if (root.className.indexOf("start") > -1) {
+                removeStartedInterval = setInterval(function() {
+                    if (root.className.indexOf("started") > -1) {
+                        root.className = root.className.replace("started", "");
+                        clearInterval(removeStartedInterval);
+                    }
+                }, 100);
+            }
         }
     }
 
