@@ -1,0 +1,12 @@
+{
+    "name": "slides",
+    "description": "slides of flex architectures",
+    "version": "1.0.0",
+    "i18n": [],
+    "main": "",
+    "layer": "",    
+    "dependencies": {
+        "reveal-js-init": "1.0.0"        
+    },
+    "reveal-js-slides": true
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+        <meta charset="UTF-8"/>        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="robots" content="nofollow"/>
+        <title>Flex</title>
+        <script type="text/javascript" src="@@applicationURL@@/resources/jsregistry/root/apprt-boot/latest/boot.js"></script>
+        <script type="text/javascript">
+            $apprt.changeConfig({
+                "ct": {
+                    "jsregistry": "@@applicationURL@@/resources/jsregistry/root"
+                }
+            });
+            $apprt.load(function(Launcher) {
+                var loc = location.href.replace(/\?.+$/,"").replace(/\/[^/]+$/,"");
+                var app = {
+                    "appName": "flex-architectures",
+                    "load": {
+                        "allowedBundles": ["system", "reveal-js-init","slides"]
+                    },
+                    "bundles": {
+                        "reveal-js-init": {
+                            "Config": {
+                                "theme": "moon"
+                                //"slidebase": loc
+                            }
+                        }
+                    }
+                };
+                new Launcher().launchApp(app);
+            });
+        </script>
+    </head>
+</html>

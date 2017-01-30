@@ -1,0 +1,11 @@
+{
+    "name": "reveal-js-init",
+    "description": "starts reveal js",
+    "version": "1.0.0",
+    "i18n": [],
+    "main": "",
+    "activator": "./Activator",
+    "dependencies": {
+        "reveal-js": "3.4.0"
+    }
+}
