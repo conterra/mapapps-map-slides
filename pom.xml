@@ -9,7 +9,7 @@
         <doc.dir>${basedir}/src/main/js</doc.dir>        
         <ct.jsregistry.version>1.0.26</ct.jsregistry.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <mapapps.remote.base>http://vsdev1476.esri-de.com:8080/mapapps-4.0.1-SNAPSHOT</mapapps.remote.base>
+        <mapapps.remote.base>http://vsdev1476.esri-de.com:8081/mapapps-4.0.1-SNAPSHOT</mapapps.remote.base>
         <mapapps.remote.user>admin</mapapps.remote.user>
         <mapapps.remote.pw>admin</mapapps.remote.pw>
     </properties>
