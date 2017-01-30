@@ -133,6 +133,7 @@
                 <version>2.5.3</version>
                 <configuration>
                     <preparationGoals>clean</preparationGoals>
+                    <releaseProfiles>compress</releaseProfiles>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
                     <tagNameFormat>@{project.version}</tagNameFormat>
                 </configuration>
