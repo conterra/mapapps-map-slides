@@ -203,6 +203,79 @@
             </build>
         </profile>
         <profile>
+            <id>write-release-versions</id>
+            <properties>
+                <replace.source.version>${project.version}</replace.source.version>
+                <replace.target.version>${project.version}</replace.target.version>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <!-- ensure correct version in the manifest.json files-->
+                        <groupId>com.google.code.maven-replacer-plugin</groupId>
+                        <artifactId>replacer</artifactId>
+                        <version>1.5.3</version>
+                        <executions>
+                            <!-- set release version -->
+                            <execution>
+                                <id>set versions from ${replace.source.version} to ${replace.target.version}</id>
+                                <phase>validate</phase>
+                                <goals>
+                                    <goal>replace</goal>
+                                </goals>
+                                <configuration>
+                                    <basedir>${basedir}</basedir>
+                                    <includes>
+                                        <include>src/main/js/**/manifest.json</include>
+                                        <include>src/main/js/**/package.json</include>
+                                    </includes>
+                                    <excludes>
+                                        <exclude>src/main/js/**/tests/**</exclude>
+                                    </excludes>
+                                    <regex>false</regex>
+                                    <replacements>
+                                        <replacement>
+                                            <token>"${replace.source.version}"</token>
+                                            <value>"${replace.target.version}"</value>
+                                        </replacement>
+                                        <replacement>
+                                            <token>"~${replace.source.version}"</token>
+                                            <value>"~${replace.target.version}"</value>
+                                        </replacement>
+                                    </replacements>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>commit-release-versions</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-scm-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>validate</phase>
+                                <goals>
+                                    <goal>checkin</goal>
+                                </goals>
+                                <configuration>
+                                    <message>[update-bundle-package-versions] from ${replace.source.version} to ${replace.target.version}</message>
+                                    <basedir>${basedir}/src/main/js</basedir>
+                                    <pushChanges>${scm.push}</pushChanges>
+                                    <username>${scm.username}</username>
+                                    <password>${scm.password}</password>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
             <id>github-release</id>
             <build>
                 <plugins>
