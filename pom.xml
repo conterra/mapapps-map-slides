@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>de.conterra.js</groupId>
-    <artifactId>ct-reveal-js</artifactId>
+    <groupId>de.conterra.devnet</groupId>
+    <artifactId>mappapps-map-slides</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <properties>
-        <doc.dir>${basedir}/src/main/js</doc.dir>        
-        <ct.jsregistry.version>1.0.26</ct.jsregistry.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <mapapps.remote.base>http://vsdev1476.esri-de.com:8081/mapapps-4.0.1-SNAPSHOT</mapapps.remote.base>
-        <mapapps.remote.user>admin</mapapps.remote.user>
-        <mapapps.remote.pw>admin</mapapps.remote.pw>
-    </properties>
     <dependencies>
         <dependency>
             <groupId>de.conterra.jsregistry</groupId>
@@ -51,10 +43,14 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+    <properties>
+        <ct.jsregistry.version>1.0.26</ct.jsregistry.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
     <build> 
         <resources>
             <resource>
-                <directory>${doc.dir}</directory>                
+                <directory>${basedir}/src/main/js</directory>
             </resource>
         </resources>
         <testResources>
@@ -63,6 +59,26 @@
             </testResource>
         </testResources>
         <plugins>
+            <plugin>
+                <groupId>de.conterra.maven</groupId>
+                <artifactId>setproperties-maven-plugin</artifactId>
+                <version>1.0.2</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>setProperties</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <!-- add here properties which are used in plugin configuration resolution -->
+                    <properties>
+                        <mapapps.remote.base />
+                        <mapapps.remote.user>admin</mapapps.remote.user>
+                        <mapapps.remote.pw>admin</mapapps.remote.pw>
+                    </properties>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>de.conterra.jsregistry</groupId>
                 <artifactId>ct-jsregistry-maven-plugin</artifactId>
@@ -77,13 +93,13 @@
                         <configuration>
                             <scanPackagesExcludes>slides</scanPackagesExcludes>
                         </configuration>
-                    </execution>                    
+                    </execution>
                 </executions>
                 <configuration>
                     <sourceDirectory>${project.build.outputDirectory}</sourceDirectory>
                     <outputDirectory>${project.build.outputDirectory}</outputDirectory>
                 </configuration>
-            </plugin>            
+            </plugin>
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
@@ -92,15 +108,15 @@
                     <stopPort>9966</stopPort>
                     <stopKey>jetty-stop</stopKey>
                     <scanIntervalSeconds>0</scanIntervalSeconds>
-                    <reload>manual</reload>                   
+                    <reload>manual</reload>
                     <useTestScope>true</useTestScope>
                     <webAppConfig>
                         <contextPath>/</contextPath>
                         <baseResource implementation="org.eclipse.jetty.util.resource.ResourceCollection">
                             <resourcesAsCSV>${basedir}/src/main</resourcesAsCSV>
-                        </baseResource>                        
+                        </baseResource>
                         <webInfIncludeJarPattern>.*/ct-jsregistry-embedded-[^/]*\.jar$</webInfIncludeJarPattern>
-                    </webAppConfig>                    
+                    </webAppConfig>
                 </configuration>
             </plugin>
             <plugin>
@@ -141,18 +157,20 @@
         </plugins>
     </build>
     <scm>
-        <developerConnection>scm:git:https://git01.eggits.net/scm/ctprodeng/ct-reveal-js.git</developerConnection>
+        <connection>scm:git:https://github.com/conterra/mappapps-map-slides.git</connection>
+        <url>https://github.com/conterra/mappapps-map-slides</url>
+        <tag>HEAD</tag>
     </scm>
     <distributionManagement>
         <repository>
             <id>ct-dist-releases-file</id>
             <name>repository for sdi.suite releases</name>
-            <url>file://///vsdev0860.esri-de.com/repo-internal/releases</url>
+            <url>${release.deployment.url}</url>
         </repository>
         <snapshotRepository>
             <id>ct-dist-snapshots-file</id>
             <name>repository for sdi.suite snapshots</name>
-            <url>file://///vsdev0860.esri-de.com/repo-internal/snapshots</url>
+            <url>${snapshot.deployment.url}</url>
         </snapshotRepository>
     </distributionManagement>
     <profiles>
@@ -162,20 +180,20 @@
                 <plugins>
                     <plugin>
                         <groupId>de.conterra.jsregistry</groupId>
-                        <artifactId>ct-jsregistry-maven-plugin</artifactId>                        
-                        <executions>                            
+                        <artifactId>ct-jsregistry-maven-plugin</artifactId>
+                        <executions>
                             <execution>
                                 <id>compress</id>
                                 <phase>compile</phase>
                                 <goals>
                                     <goal>calculateDependencies</goal>
                                     <goal>optimizeJS</goal>
-                                </goals>         
+                                </goals>
                                 <configuration>
                                     <scanPackagesExcludes>slides</scanPackagesExcludes>
                                 </configuration>
                             </execution>
-                        </executions>                        
+                        </executions>
                     </plugin>
                 </plugins>
             </build>
@@ -186,8 +204,8 @@
                 <plugins>
                     <plugin>
                         <groupId>de.conterra.jsregistry</groupId>
-                        <artifactId>ct-jsregistry-maven-plugin</artifactId>                        
-                        <executions>                            
+                        <artifactId>ct-jsregistry-maven-plugin</artifactId>
+                        <executions>
                             <execution>
                                 <id>deploy-to-remote-mapapps</id>
                                 <phase>deploy</phase>
@@ -200,7 +218,31 @@
                                     <password>${mapapps.remote.pw}</password>
                                 </configuration>
                             </execution>
-                        </executions>                        
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>github-release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>de.jutzig</groupId>
+                        <artifactId>github-release-plugin</artifactId>
+                        <version>1.2.0</version>
+                        <executions>
+                            <execution>
+                                <id>github-upload</id>
+                                <phase>deploy</phase>
+                                <goals>
+                                    <goal>release</goal>
+                                </goals>
+                                <configuration>
+                                    <tag>${project.version}</tag>
+                                </configuration>
+                            </execution>
+                        </executions>
                     </plugin>
                 </plugins>
             </build>
