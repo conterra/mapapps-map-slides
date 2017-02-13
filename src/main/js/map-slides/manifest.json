@@ -1,0 +1,24 @@
+{
+    "name": "map-slides",
+    "description": "Integration of reveal js into map.apps",
+    "version": "1.0.0",
+    "i18n": [],
+    "main": "",
+    "dependencies": {
+        "reveal-js": "~3.4.0"
+    },
+    "components": [{
+            "name": "Config",
+            "provides": "ct.framework.api.EventHandler",
+            "properties": {
+                "Event-Topics": [{
+                        "topic": "ct/framework/FrameworkEvent/STARTED",
+                        "method": "_startSlideShow"
+                    }]
+            },
+            "references": [{
+                    "name": "_appCtx",
+                    "providing": "ct.framework.api.ApplicationContext"
+                }]
+        }]
+}

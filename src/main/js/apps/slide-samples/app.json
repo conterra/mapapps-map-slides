@@ -1,0 +1,16 @@
+{
+    "load": {
+        "bundleLocations": ["localbundles", "bundles"],
+        "allowedBundles": [
+            "system",
+            "map-slides"
+        ]
+    },
+    "bundles": {
+        "map-slides": {
+            "Config": {
+                "theme": "moon"
+            }
+        }
+    }
+}

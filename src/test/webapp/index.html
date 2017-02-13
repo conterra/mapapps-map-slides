@@ -12,31 +12,16 @@
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
         <link rel="icon" href="@@mapapps.remote.base@@/favicon.ico" type="image/x-icon"/>
-        <!--Import the init_night.css if you wish the map.apps 2.x default splashscreen
-        <link type="text/css" rel="stylesheet" href="init_night.css"/>-->
         <link type="text/css" rel="stylesheet" href="@@mapapps.remote.base@@/init.css" />
         <style type="text/css">html,body {height: 100%;margin: 0;padding: 0;overflow: hidden;}</style>
-        <title>map.apps remote sample</title>
-        <!-- For non-Retina iPhone, iPod Touch -->
-        <link rel="apple-touch-ico-precomposed" href="@@mapapps.remote.base@@/images/mobile/home-icon-57x57.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="@@mapapps.remote.base@@/images/mobile/home-icon-72x72.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="@@mapapps.remote.base@@/images/mobile/home-icon-114x114.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="@@mapapps.remote.base@@/images/mobile/home-icon-144x144.png" />
-        <!-- Chrome Mobile Browser -->
-        <link rel="shortcut icon" sizes="196x196" href="@@mapapps.remote.base@@/images/mobile/home-icon-196x196.png">
-        <link rel="shortcut icon" sizes="114x114" href="@@mapapps.remote.base@@/images/mobile/home-icon-114x114.png" />
+        <title>map.apps</title>
         <script type="text/javascript">
             window.dojoConfig = {
-                isDebug: true,
-                has: {
-                    "ct-debug" : true
-                },
-                esri: {defaults: {io: {proxyUrl: "@@applicationURL.noscheme@@/proxy"}}},
                 packages: [
                     // add local apps directory as amd package
                     {name: "localapps", location: "@@applicationURL.noscheme@@/js/apps"},
                     // add local bundles directory as amd package
-                    {name: "localbundles", location: "@@jsregistry.root.url@@"}
+                    {name: "localbundles", location: "@@applicationURL.noscheme@@/resources/jsregistry/root"}
                 ]
             };
         </script>
@@ -53,15 +38,34 @@
     <body class="start">
         <div class="startLogo"></div>
         <div id="splashScreen" class="splashScreen">
-            <div class="anim_bg">
-                <div class="progress">
-                    <div class="progressMsg">
-                        <p class="splashHeader  launchLog">Start</p>
-                        <p class="splashBundle">&nbsp;</p>
-                        <div class="splashSpacer"></div>
-                    </div>
+            <div class="launch__animation">
+                <div class="dot-outer">
+                    <div class="dot dot-1"></div>
+                </div>
+                <div class="dot-outer">
+                    <div class="dot dot-2"></div>
+                </div>
+                <div class="dot-outer">
+                    <div class="dot dot-3"></div>
+                </div>
+                <div class="dot-outer">
+                    <div class="dot dot-4"></div>
+                </div>
+                <div class="dot-outer">
+                    <div class="dot dot-5"></div>
+                </div>
+                <div class="dot-outer">
+                    <div class="dot dot-6"></div>
                 </div>
             </div>
-        </div>
+            <div class="launch__title">
+                <h4 class="splashHeader">
+                    <span class="launchLog"></span>
+                </h4>
+            </div>
+            <div class="launch__bundles">
+                <p class="splashBundle">&nbsp;</p>
+            </div>
+        </div>       
     </body>
 </html>
