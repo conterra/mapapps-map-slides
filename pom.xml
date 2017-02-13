@@ -143,6 +143,11 @@
                 </configuration>
             </plugin>
             <plugin>
+                <groupId>com.google.code.maven-replacer-plugin</groupId>
+                <artifactId>replacer</artifactId>
+                <version>1.5.3</version>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-scm-plugin</artifactId>
                 <version>1.9.5</version>
@@ -220,7 +225,6 @@
                         <!-- ensure correct version in the manifest.json files-->
                         <groupId>com.google.code.maven-replacer-plugin</groupId>
                         <artifactId>replacer</artifactId>
-                        <version>1.5.3</version>
                         <executions>
                             <!-- set release version -->
                             <execution>
@@ -264,7 +268,7 @@
                         <artifactId>maven-scm-plugin</artifactId>
                         <executions>
                             <execution>
-                                <phase>validate</phase>
+                                <phase>initialize</phase>
                                 <goals>
                                     <goal>checkin</goal>
                                 </goals>
