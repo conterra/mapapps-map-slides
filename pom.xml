@@ -32,10 +32,17 @@
         </dependency>
     </dependencies>
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        
         <default.app.name>slide-samples</default.app.name>
+        
         <mapapps.version>4.0.0-PIONEER</mapapps.version>
         <ct.jsregistry.version>1.0.26</ct.jsregistry.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        
+        <!-- required for release build -->
+        <scm.push>false</scm.push>
+        <scm.username>${env.USER_NAME}</scm.username>
+        <scm.password>${env.USER_PW}</scm.password>
     </properties>
     <build> 
         <resources>
@@ -83,7 +90,7 @@
                             <goal>buildPacksProperties</goal>
                         </goals>
                         <configuration>
-                            <scanPackagesExcludes>apps,slides</scanPackagesExcludes>
+                            <scanPackagesExcludes>apps</scanPackagesExcludes>
                         </configuration>
                     </execution>
                 </executions>
@@ -132,8 +139,7 @@
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.0.2</version>
                 <configuration>
-                    <excludes>slides/**</excludes>
-                    <excludes>apps/**</excludes>
+                    <excludes>apps/**,**/tests/**</excludes>
                 </configuration>
             </plugin>
             <plugin>
@@ -141,10 +147,15 @@
                 <artifactId>maven-release-plugin</artifactId>
                 <version>2.5.3</version>
                 <configuration>
-                    <preparationGoals>clean</preparationGoals>
-                    <releaseProfiles>compress</releaseProfiles>
-                    <autoVersionSubmodules>true</autoVersionSubmodules>
                     <tagNameFormat>@{project.version}</tagNameFormat>
+                    <preparationGoals>clean</preparationGoals>
+                    <releaseProfiles>compress,github-release</releaseProfiles>
+                    <!-- disable src and javadoc -->
+                    <useReleaseProfile>false</useReleaseProfile>
+                    <!-- for git release plugin-->
+                    <arguments>-Dusername=${scm.username} -Dpassword=${scm.password}</arguments>
+                    <username>${scm.username}</username>
+                    <password>${scm.password}</password>
                 </configuration>
             </plugin>
         </plugins>
@@ -183,7 +194,7 @@
                                     <goal>optimizeJS</goal>
                                 </goals>
                                 <configuration>
-                                    <scanPackagesExcludes>apps,slides</scanPackagesExcludes>
+                                    <scanPackagesExcludes>apps</scanPackagesExcludes>
                                 </configuration>
                             </execution>
                         </executions>
