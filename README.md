@@ -1,4 +1,4 @@
-# mappapps-map-slides
+# mapapps-map-slides
 
 Support for reveal js silde apps inside map.apps.
 
