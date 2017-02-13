@@ -1,7 +1,7 @@
 {
     "name": "map-slides",
     "description": "Integration of reveal js into map.apps",
-    "version": "1.0.0-SNAPSHOT",
+    "version": "0.0.1",
     "i18n": [],
     "main": "",
     "dependencies": {
