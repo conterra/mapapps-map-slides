@@ -3,3 +3,7 @@
 /nbactions-ct-platform-architecture.xml
 /nb-configuration.xml
 /build.properties
+
+target/*
+.idea/*
+*.iml
