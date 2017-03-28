@@ -2,6 +2,8 @@
 
 Support for reveal js silde apps inside map.apps.
 
+This bundle requires [mapapps-reveal-js](/conterra/mapapps-reveal-js) to be installed.
+
 ## Slides as app.
 
 Create an new app via map.apps Manager.
